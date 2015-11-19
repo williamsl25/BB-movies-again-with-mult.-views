@@ -1,0 +1,143 @@
+$main-font: 'Rancho', cursive;
+
+@mixin transition($transition1, $transition2){
+  -webkit-transition:$transition1, $transition2;
+  -moz-transition:$transition1, $transition2;
+  -o-transition:$transition1, $transition2;
+  transition:$transition1, $transition2;
+}
+
+@mixin buttonTransition($buttonTransition) {
+  -webkit-transition:$buttonTransition;
+  -moz-transition:$buttonTransition;
+  -o-transition:$buttonTransition;
+  transition:$buttonTransition;
+}
+
+.header {
+  font-family: $main-font;
+  text-align: center;
+  font-size: 4.0em;
+  text-shadow: 6px 6px 3px rgba(134, 123, 118, 0.64);
+
+}
+.container {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-family: $main-font;
+  text-align: center;
+}
+
+h3 {
+  font-family: $main-font;
+  color: #b2a6a6;
+  text-align: center;
+}
+
+p {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.5em;
+}
+
+#newPoster {
+width: 100%;
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+border-radius: 4px;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+@include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s);
+}
+
+#submitListing {
+  border-color: #7e7496;
+  &:hover {
+    background-color: #7e7496;
+    color: white;
+    @include buttonTransition(all 1s ease);
+  }
+}
+
+#createMovie {
+  width: 98%;
+  border: 2px solid #757575;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto 20px auto;
+  background-color: #eeeeee;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+  label {
+    font-size: 2.0em;
+    font-family: $main-font;
+
+  }
+}
+
+/* section {
+  display: flex;
+}
+ */
+article {
+  border: 2px solid #757575;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  height: 700px;
+  background-color: #eeeeee;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.47);
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: center;
+}
+
+#deletePost {
+  @extend #submitListing;
+  margin: 5px;
+}
+
+#editPost {
+  @extend #submitListing;
+  margin: 5px;
+}
+
+#updatePost {
+  margin-top: 8%;
+  display: none;
+  input {
+    width: 100%;
+  }
+}
+
+img {
+  max-width: 300px;
+  max-height: 400px;
+  margin: auto;
+  padding-bottom: 0px;
+  padding-top: 5px;
+  margin-left: 117px;
+}
+
+#submitEdit {
+  margin: 5px;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+@media screen and (min-width:992px) {
+  .col-md-4 {
+    width: 32%;
+    margin: 7px;
+  }
+}
