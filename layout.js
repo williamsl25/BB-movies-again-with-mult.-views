@@ -2,18 +2,19 @@ var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
-var FormView = require('./formView');
 var ListingView = require('./modelView');
 var MovieListing = require('./model');
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
-  el: '#postTmpl',
+  el: '#layoutView',
   initialize: function () {
     var self = this;
-    var movieListing = new MovieListing();
-    movieListing.fetch().then(function () {
-      var listingView = new ListingView({model: movie});
+    var movieCollection = new MovieCollection();
+    movieCollection.fetch().then(function (data) {
+      console.log("these are the movies: ", movieCollection
+    );
+      var collectionView = new CollectionView({collection: movieCollection});
       // self.$el.find('section').html()
 
       self.$el.find('#createMovie').html(formHTML.render().el);

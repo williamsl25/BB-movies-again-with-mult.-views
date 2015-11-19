@@ -13,7 +13,7 @@ module.exports = Backbone.Collection.extend({
    }
 });
 
-},{"./model":4,"./templates":9,"backbone":6,"jquery":7,"underscore":8}],2:[function(require,module,exports){
+},{"./model":5,"./templates":10,"backbone":7,"jquery":8,"underscore":9}],2:[function(require,module,exports){
 //Collection View for MovieCollection
 var Backbone = require('backbone');
 var _ = require('underscore');
@@ -70,24 +70,61 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./model":4,"./modelView":5,"./templates":9,"backbone":6,"jquery":7,"underscore":8}],3:[function(require,module,exports){
+},{"./model":5,"./modelView":6,"./templates":10,"backbone":7,"jquery":8,"underscore":9}],3:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var ListingView = require('./modelView');
+var MovieListing = require('./model');
+var tmpl = require('./templates');
+
+module.exports = Backbone.View.extend({
+  el: '#layoutView',
+  initialize: function () {
+    var self = this;
+    var movieCollection = new MovieCollection();
+    movieCollection.fetch().then(function (data) {
+      console.log("these are the movies: ", movieCollection
+    );
+      var collectionView = new CollectionView({collection: movieCollection});
+      // self.$el.find('section').html()
+
+      self.$el.find('#createMovie').html(formHTML.render().el);
+      self.$el.find('.content').html(formHTML.render().el);
+      self.$el.find('#updatePost').html(formHTML.render().el);
+      self.$el.find('#postTmpl').html(formHTML.render().el);
+
+    });
+
+
+  }
+
+});
+
+},{"./model":5,"./modelView":6,"./templates":10,"backbone":7,"jquery":8,"underscore":9}],4:[function(require,module,exports){
 var $ = require('jquery');
 var CollectionView = require('./collectionView');
 var MovieCollection =require('./collection');
 var tmpl = require('./templates');
+var layoutView = require('./layout');
 
-$(document).ready(function() {
-  var movieCollection = new MovieCollection();
-  movieCollection.fetch().then(function (data) {
-    console.log("these are the movies: ", movieCollection
-  );
-    var collectionView = new CollectionView({collection: movieCollection});
-  });
+// $(document).ready(function() {
+//   var movieCollection = new MovieCollection();
+//   movieCollection.fetch().then(function (data) {
+//     console.log("these are the movies: ", movieCollection
+//   );
+//     var collectionView = new CollectionView({collection: movieCollection});
+//   });
+// });
+// .fetch will grab the collection from the server
+// creates an instance of the movie collection
+
+$(function () {
+  new layoutView();
 });
-//.fetch will grab the collection from the server
-//creates an instance of the movie collection
 
-},{"./collection":1,"./collectionView":2,"./templates":9,"jquery":7}],4:[function(require,module,exports){
+},{"./collection":1,"./collectionView":2,"./layout":3,"./templates":10,"jquery":8}],5:[function(require,module,exports){
 //Movie Listing
 var Backbone = require('backbone');
 var _ = require('underscore');
@@ -108,7 +145,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":6,"underscore":8}],5:[function(require,module,exports){
+},{"backbone":7,"underscore":9}],6:[function(require,module,exports){
 //Model View for MovieListing only concerned with one model (from the template)
 var Backbone = require('backbone');
 var _ = require('underscore');
@@ -174,7 +211,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./model":4,"./templates":9,"backbone":6,"jquery":7,"underscore":8}],6:[function(require,module,exports){
+},{"./model":5,"./templates":10,"backbone":7,"jquery":8,"underscore":9}],7:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2072,7 +2109,7 @@ module.exports = Backbone.View.extend({
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":7,"underscore":8}],7:[function(require,module,exports){
+},{"jquery":8,"underscore":9}],8:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11284,7 +11321,7 @@ return jQuery;
 
 }));
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12834,7 +12871,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = {
 
 // id="postTmpl"
@@ -12899,4 +12936,4 @@ module.exports = {
 
 };
 
-},{}]},{},[3]);
+},{}]},{},[4]);
